@@ -1,0 +1,50 @@
+body {
+  height: 100%;
+}
+label {
+  display: block;
+}
+.App {
+  display: flex;
+  text-align: center;
+}
+#root {
+  display: flex;
+  margin-top: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+.mainGrid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 75%;
+  margin: 0 auto;
+}
+.rowNameDate {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 75%;
+}
+.rowContent {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 75%;
+}
+.sendBtn {
+  margin-top: 1rem;
+  width: 56.5%;
+  display: flex;
+  justify-content: flex-end;
+}
+.inputForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 75%;
+}
