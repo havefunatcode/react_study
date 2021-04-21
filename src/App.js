@@ -1,75 +1,47 @@
 import './App.css';
-import React, { Fragment } from 'react';
-import { Button, TextField, Icon } from '@material-ui/core';
-
-function RowName() {
-  return (
-    <div className="rowName">
-      <label>Name</label>
-      <TextField className="inputName" id="outlined-basic" variant="outlined" size="small" />
-    </div>
-  );
-}
-
-function RowDate() {
-  return (
-    <div className="rowDate">
-      <label>Date</label>
-      <TextField
-        className="inputDate"
-        id="date"
-        type="date"
-        defaultValue="2017-05-24"
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
-    </div>
-  );
-}
-
-function SendBtn() {
-  return (
-    <div className="sendBtn">
-      <Button
-        variant="contained"
-        color="primary"
-        endIcon={<Icon>send</Icon>}
-      >
-        Send
-    </Button>
-    </div>
-  );
-}
-
-function RowContext() {
-  return (
-    <div className="rowContent">
-      <label>Context</label>
-      <TextField
-        className="inputContext"
-        id="outlined-basic"
-        variant="outlined"
-        fullWidth="true"
-        rows={15}
-        multiline
-      />
-    </div>
-  );
-}
+import React, { Fragment, useState } from 'react';
+import RowName from "./component/RowName";
+import RowDate from "./component/RowDate";
+import RowContext from "./component/RowContext";
+import SendBtn from "./component/SendBtn";
 
 function App() {
+  const nowTime = new Date();
+
+  var [name, setName] = useState("");
+  var [date, setDate] = useState(nowTime.toISOString().split('T')[0]);
+  var [context, setContext] = useState("");
+  //var [data, setData] = useState("");
+
+  const getName = (childName) => setName({ name: childName })
+  const getDate = (childDate) => setDate({ date: childDate })
+  const getContext = (childContext) => setContext({ context: childContext })
+  /*
+    useEffect((childName, childDate, childContext) => {
+      setName({ name: childName });
+      setDate({ date: childDate });
+      setContext({ context: childContext });
+    });
+  */
   return (
     <Fragment>
       <div className="mainGrid">
         <form className="inputForm">
           <div className="rowNameDate">
-            <RowName />
-            <RowDate />
+            <RowName
+              nameCallback={getName}
+            />
+            <RowDate
+              dateCallback={getDate}
+            />
           </div>
-          <RowContext />
+          <RowContext
+            contextCallback={getContext}
+          />
         </form>
-        <SendBtn />
+        <SendBtn
+          sendData={{ name, date, context }}
+        />
       </div>
     </Fragment>
   );
